@@ -90,7 +90,7 @@ VITE_OPENAI_KEY=<AZURE_API_KEY>
 ### Running the demo from the Go server
 
 - Change directory to: `openai-demo`
-- Create or edit an `.env` file and add the following values:
+- Create or edit an `.env` file and add or replace the following values:
 
 ```bash
 VITE_OPENAI_GPT_URL=/api/gpt
