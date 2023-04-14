@@ -90,7 +90,7 @@ VITE_OPENAI_KEY=<AZURE_API_KEY>
 ```mermaid
 flowchart LR
 A((User)) --> B(frontend)
-B --> C(Azure<br/>OpenAI)
+B --> C(Azure<br/>OpenAI API)
 ```
 ### Running the demo from the Go server
 
@@ -123,7 +123,7 @@ APPLICATION_PORT=3000
 flowchart LR
 A((User)) --> B(frontend)
 B --> C(backend)
-C --> D(Azure<br/>OpenAI)
+C --> D(Azure<br/>OpenAI API)
 ```
 
 ### Running the Static Generation Job
