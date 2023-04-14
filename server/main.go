@@ -89,14 +89,11 @@ func main() {
 		log.Info(payload)
 		resp, err := soup.Get(payload.URI)
 		if err != nil {
-			//os.Exit(1)
 			return c.Status(fiber.StatusInternalServerError).JSON(common.URIContentResponse{Content: "Error"})
 		}
 		doc := soup.HTMLParse(resp)
 		div := doc.Find(payload.ElementType, payload.Attribute, payload.AttributeID)
 		if div.Error != nil {
-			//log.Println(div.Error)
-			//os.Exit(1)
 			return c.Status(fiber.StatusInternalServerError).JSON(common.URIContentResponse{Content: "Error"})
 		}
 		// Send the json response
@@ -107,8 +104,6 @@ func main() {
 		output = re.ReplaceAllString(output, "\n")
 		re = regexp.MustCompile(`\n\s+`)
 		output = re.ReplaceAllString(output, "\n ")
-		// re = regexp.MustCompile("\n+")
-		// output = re.ReplaceAllString(output, "\n")
 		return c.JSON(common.URIContentResponse{Content: output})
 	})
 
