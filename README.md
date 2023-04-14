@@ -91,6 +91,8 @@ VITE_OPENAI_KEY=<AZURE_API_KEY>
 flowchart LR
 A((User)) --> B(frontend)
 B --> C(Azure<br/>OpenAI API)
+C --> B
+B --> A
 ```
 ### Running the demo from the Go server
 
@@ -124,6 +126,9 @@ flowchart LR
 A((User)) --> B(frontend)
 B --> C(backend)
 C --> D(Azure<br/>OpenAI API)
+D --> C
+C --> B
+B --> A
 ```
 
 ### Running the Static Generation Job
