@@ -51,8 +51,8 @@ func main() {
 
 	var waitGroup sync.WaitGroup
 
-	prompts, _ := ioutil.ReadFile("prompts.csv")
-	cities, _ := ioutil.ReadFile("cities.csv")
+	prompts, _ := ioutil.ReadFile("data/prompts.csv")
+	cities, _ := ioutil.ReadFile("data/cities.csv")
 
 	log.Info("Loading source files")
 	citiesFrame := df.ReadCSV(strings.NewReader(string(cities)))
