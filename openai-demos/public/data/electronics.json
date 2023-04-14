@@ -1,0 +1,144 @@
+[
+  {
+    "id": 1000,
+    "make": "Apple",
+    "model": "iPhone 13 Pro",
+    "color": "Graphite",
+    "features": ["A15 Bionic chip", "ProMotion display", "5G capable"],
+    "warranty": "1 year",
+    "price": 999,
+    "description": ""
+  },
+  {
+    "id": 1001,
+    "make": "Samsung",
+    "model": "Galaxy S21",
+    "color": "Phantom Violet",
+    "features": ["Exynos 2100 processor", "120Hz refresh rate", "5G capable"],
+    "warranty": "1 year",
+    "price": 799,
+    "description": ""
+  },
+  {
+    "id": 1002,
+    "make": "Sony",
+    "model": "WH-1000XM4",
+    "color": "Black",
+    "features": [
+      "Active noise cancellation",
+      "Bluetooth connectivity",
+      "30-hour battery life"
+    ],
+    "warranty": "1 year",
+    "price": 349,
+    "description": ""
+  },
+  {
+    "id": 1003,
+    "make": "Dell",
+    "model": "XPS 13",
+    "color": "Platinum Silver",
+    "features": [
+      "11th Gen Intel Core processors",
+      "InfinityEdge display",
+      "Up to 19 hours of battery life"
+    ],
+    "warranty": "1 year",
+    "price": 949,
+    "description": ""
+  },
+  {
+    "id": 1004,
+    "make": "LG",
+    "model": "C1 OLED",
+    "color": "Black",
+    "features": ["4K resolution", "Dolby Vision IQ", "120Hz refresh rate"],
+    "warranty": "1 year",
+    "price": 1799,
+    "description": ""
+  },
+  {
+    "id": 1005,
+    "make": "Bose",
+    "model": "QuietComfort 35 II",
+    "color": "Silver",
+    "features": [
+      "Noise-cancellation",
+      "Bluetooth connectivity",
+      "20-hour battery life"
+    ],
+    "warranty": "1 year",
+    "price": 299,
+    "description": ""
+  },
+  {
+    "id": 1006,
+    "make": "Microsoft",
+    "model": "Surface Pro 8",
+    "color": "Platinum",
+    "features": [
+      "11th Gen Intel Core processors",
+      "13-inch PixelSense display",
+      "Up to 16 hours of battery life"
+    ],
+    "warranty": "1 year",
+    "price": 1099,
+    "description": ""
+  },
+  {
+    "id": 1007,
+    "make": "Fitbit",
+    "model": "Versa 3",
+    "color": "Midnight",
+    "features": [
+      "Built-in GPS",
+      "Heart rate monitoring",
+      "6+ day battery life"
+    ],
+    "warranty": "1 year",
+    "price": 229,
+    "description": ""
+  },
+  {
+    "id": 1008,
+    "make": "Amazon",
+    "model": "Echo Dot (4th Gen)",
+    "color": "Charcoal",
+    "features": [
+      "Alexa voice control",
+      "Compact design",
+      "Built-in smart home hub"
+    ],
+    "warranty": "1 year",
+    "price": 49,
+    "description": ""
+  },
+  {
+    "id": 1009,
+    "make": "Nintendo",
+    "model": "Switch OLED",
+    "color": "White",
+    "features": [
+      "7-inch OLED screen",
+      "Enhanced audio",
+      "64GB internal storage"
+    ],
+    "warranty": "1 year",
+    "price": 349,
+    "description": ""
+  },
+  {
+    "id": 1010,
+    "make": "Canon",
+    "model": "EOS R6",
+    "color": "Black",
+    "features": [
+      "20.1 megapixel full-frame sensor",
+      "In-body image stabilization",
+      "4K video"
+    ],
+    "warranty": "1 year",
+    "price": 2499,
+    "description": ""
+  }
+]

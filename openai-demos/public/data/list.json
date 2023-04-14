@@ -1,0 +1,99 @@
+[
+  {
+    "city": "New York",
+    "country": "USA",
+    "airport": "JFK",
+    "attraction_images": []
+  },
+  {
+    "city": "London",
+    "country": "UK",
+    "airport": "LHR",
+    "attraction_images": []
+  },
+  {
+    "city": "Paris",
+    "country": "France",
+    "airport": "CDG",
+    "attraction_images": []
+  },
+  {
+    "city": "Rome",
+    "country": "Italy",
+    "airport": "FCO",
+    "attraction_images": []
+  },
+  {
+    "city": "Rio de Janeiro",
+    "country": "Brazil",
+    "airport": "GIG",
+    "attraction_images": [
+      {
+        "name": "Sugarloaf Mountain",
+        "image_url": "/images/Rio/pao-de-acucar.jpg"
+      },
+      {
+        "name": "Amanhã Museum",
+        "image_url": "/images/Rio/museu-do-amanha.JPG"
+      },
+      {
+        "name": "Julieta de Serpa Restaurant",
+        "image_url": "/images/Rio/julieta-de-serpa.JPG"
+      }
+    ]
+  },
+  {
+    "city": "Lisbon",
+    "country": "Portugal",
+    "airport": "LIS",
+    "attraction_images": []
+  },
+  {
+    "city": "Madrid",
+    "country": "Spain",
+    "airport": "MAD",
+    "attraction_images": []
+  },
+  {
+    "city": "Lima",
+    "country": "Peru",
+    "airport": "LIM",
+    "attraction_images": []
+  },
+  {
+    "city": "Antigua Guatemala",
+    "country": "Guatemala",
+    "airport": "GUA",
+    "attraction_images": []
+  },
+  {
+    "city": "Buenos Aires",
+    "country": "Argentina",
+    "airport": "EZE",
+    "attraction_images": []
+  },
+  {
+    "city": "New Delhi",
+    "country": "India",
+    "airport": "DEL",
+    "attraction_images": []
+  },
+  {
+    "city": "Cancun",
+    "country": "Mexico",
+    "airport": "CUN",
+    "attraction_images": []
+  },
+  {
+    "city": "Buzios",
+    "country": "Brazil",
+    "airport": "GIG",
+    "attraction_images": []
+  },
+  {
+    "city": "Mexico City",
+    "country": "Mexico",
+    "airport": "MEX",
+    "attraction_images": []
+  }
+]

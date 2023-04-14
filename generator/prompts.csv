@@ -1,0 +1,10 @@
+section|prompt
+attractions|List up to 10 top attractions in {city}, {country}?
+entry|For visitors of another country, What are the entry requirement for visiting {country}?
+history|what is a short history of {city}, {country}?
+food|List up to 5 street food, drinks, and desserts in {city},{country}?
+restaurants|List up to 5 restaurants and list up to 5 bars in {city}, {country}?
+parks|List up to 5 parks and list up to 5 beaches in {city}, {country}?
+safety|List some threats and list some safety tips for visitors to {city}, {country}?
+medical|What are some good medical care facilities in {city}, {country}?
+customs|List up to 5 local customs in {city}, {country}?

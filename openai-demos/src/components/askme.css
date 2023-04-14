@@ -1,0 +1,15 @@
+.askme label {
+    font-weight: 600;
+}
+.askme section {
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+.askme .areaTitle {
+    font-weight: bold;
+    color: #707070;
+    font-size: 1.1em;
+    text-decoration: underline;
+    text-decoration-color: black;
+}
