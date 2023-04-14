@@ -2,6 +2,16 @@
 
 Three Azure OpenAI demo that includes the ability to generate product description, city travel guides, and includes a playground area for setting context and prompting. It also includes a static content generator for the city guide content that is generated dynamically.
 
+## Requirements
+
+- Azure Subscription
+  - Access to the OpenAI Services
+    - A Davinci deployment
+    - A Gpt 3.5 turbo deployment
+    - An API KEY
+- npm
+- Go 1.20
+
 ## Demo Areas
 
 The demo is meant to serve as a simulator to help you understand how to use the Azure OpenAI API could be leverage to build a variety of applications. The demo is broken into three areas:
@@ -66,6 +76,7 @@ require (
 > Note: This demo can run directly from React
 
 - Change directory to: `openai-demo`
+- Type: `npm install`
 - Create or edit an `.env` file and add the following values:
 
 ```bash
