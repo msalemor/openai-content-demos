@@ -8,7 +8,7 @@ Three Azure OpenAI demo that includes the ability to generate product descriptio
   - Access to the OpenAI Services
     - A Davinci deployment
     - A Gpt 3.5 turbo deployment
-    - An API KEY
+    - An API KEY for the deployments
 - node and npm
 - Go 1.20
 
