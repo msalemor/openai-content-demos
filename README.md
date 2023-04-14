@@ -7,7 +7,7 @@ Three Azure OpenAI demo that includes the ability to generate product descriptio
 - Frontend: 
   - React with Typescript
   - Bootstrap
-  -Axios
+  - Axios
 - Backend: 
   - Go
   - Fiber
