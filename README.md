@@ -86,7 +86,12 @@ VITE_OPENAI_KEY=<AZURE_API_KEY>
 ```
 
 - Type: `npm run dev`
-
+- Diagram:
+```mermaid
+flowchart LR
+A((User)) --> B(frontend)
+B --> C(Azure<br/>OpenAI)
+```
 ### Running the demo from the Go server
 
 - Change directory to: `openai-demo`
@@ -113,6 +118,13 @@ APPLICATION_PORT=3000
 ```
 
 - type: sh run.sh
+- Diagram:
+```mermaid
+flowchart LR
+A((User)) --> B(frontend)
+B --> C(backend)
+C --> D(Azure<br/>OpenAI)
+```
 
 ### Running the Static Generation Job
 
