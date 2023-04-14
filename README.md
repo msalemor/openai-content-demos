@@ -16,7 +16,7 @@ This demo will mock requesting a list of electronic consumer products, and the g
 
 ## City Guides
 
-This demo will mock building a travel guide for a city. The city guide is built by selecting from a list of cities or dynamically based on the city name that is entered. This demo leverages the Davinci endpoint. You can add more cities to the list by modifying the `file.json`. For the attraction images, I did not want to use images that I did not own. Only Rio de Janeiro has images.
+This demo will mock building a travel guide for a city. The city guide is built by selecting from a list of cities or dynamically based on the city name that is entered. This demo leverages the Davinci endpoint. You can add more cities to the list by modifying the `openai-demos/public/data/list.json`. For the attraction images, I did not want to use images that I did not own. Only Rio de Janeiro has images.
 
 ## Generator
 
