@@ -30,7 +30,7 @@ This demo will mock building a travel guide for a city. The city guide is built 
 
 ## Static Generator
 
-This demo will build the static content for City Guides as a backend process using the Davinvi endpoint. This content could be used in static content generators such as Jekyll or Hugo to generate a full site.
+City guides generates the content dynamically. This means that every section of the page is rendered by making a call to OpenAI. This approach is for demo purposes to visualize what is happening. A better approach to generate such a site would be to generate static content for the different sections and then use a static site generator such as Jekyll or Hugo to buid such site. The static content generator generates such content.
 
 ## Stack
 
