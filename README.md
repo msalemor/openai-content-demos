@@ -1,6 +1,10 @@
 # Azure OpenAI Demo
 
-Three Azure OpenAI demo that includes the ability to generate product description, city travel guides, and includes a playground area for setting context and prompting. It also includes a static content generator for the city guide content that is generated dynamically.
+The Azure OpenAI demo includes three areas: 
+
+- **Product Descriptions**: this area simulates a call to a database to get structure product data, and then from each product data it generates a sales description. This area leverages the Azure Davinci OpenAI endpoint.
+- **City Travel Guides**: this area is a more complex use case of content generation, in this area a full city travel guide is generated for a given city. This includes information such as the history, getting to downtown from the airport, a walking tour, entertainment options, etc. all in one Web page.  This area leverages the Azure Davinci OpenAI endpoint.
+- **Ask Me Anything**:  this area leverages the Azure OpenAI ChatGPT 3.5 endpoint. This area of the demo is similar to other playgrounds, but it is designed to help understand prompting and setting context from a textbox area or by scrapping content from a URL.
 
 ## Requirements
 
