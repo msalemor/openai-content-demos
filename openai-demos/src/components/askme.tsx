@@ -4,19 +4,33 @@ import {
   IChatCompletion,
   IChatMessage,
   IChatPrompt,
+  IDavinciPrompt,
   ISettings,
 } from "../interfaces";
-import { StateStore, getChatCompletion, getJson } from "../services";
+import {
+  StateStore,
+  getChatCompletion,
+  getDavinciCompletion,
+  getJson,
+} from "../services";
 import ReactMarkdown from "react-markdown";
 import axios from "axios";
 
 const AksMe = (props: { settings: ISettings }) => {
+  // Constants
+  const SCRAPPER_URI = "/api/uricontent";
+  const CONTEXT_DIVIDER = "[context]";
   let startModel: IChatPrompt = {
     messages: [],
     context: "",
     temperature: parseFloat(props.settings.temperature),
     max_tokens: parseInt(props.settings.max_tokens),
     n: parseInt(props.settings.n),
+  };
+  const contentTypeConfig = {
+    headers: {
+      "Content-Type": "application/json",
+    },
   };
 
   let [prompt, setPrompt] = useState<string>("");
@@ -30,6 +44,7 @@ const AksMe = (props: { settings: ISettings }) => {
     attribute: "class",
     attributeID: "",
   });
+  let [selectedOption, setSelectedOption] = useState<string>("GPT");
   const [, forceRender] = useReducer((s) => s + 1, 0);
 
   const onClear = (prevent: boolean) => {
@@ -48,84 +63,130 @@ const AksMe = (props: { settings: ISettings }) => {
     setCompletionText("");
   };
 
-  const onSubmit = async (e: FormEvent) => {
-    e.preventDefault();
+  const processGPT = async () => {
+    const messages: IChatMessage[] = [];
+    let siteContent = "";
+    let finalContext = "";
 
-    if (prompt !== "" && uriContent.uri === "") {
-      const messages: IChatMessage[] = [];
-      if (context !== "") {
-        messages.push({
-          role: "system",
-          content:
-            "You are a assistant that can answer questions using the following context:\n" +
-            context,
-        });
-        messages.push({
-          role: "user",
-          content: prompt,
-        });
-      } else {
-        messages.push({
-          role: "system",
-          content: "You are a general assistant.",
-        });
-        messages.push({
-          role: "user",
-          content: prompt,
-        });
-      }
-
-      let payload: IChatPrompt = {
-        ...startModel,
-        messages,
-        context: context,
-      };
-      //console.info(payload);
-      setPayload(JSON.stringify(payload, null, 2));
-      let completion = await getChatCompletion(payload);
-      setCompletion(completion);
-      setCompletionText(completion?.choices[0].message.content ?? "");
-    } else if (prompt !== "" && uriContent.uri !== "") {
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
+    if (uriContent.uri !== "") {
       const contentRequest = {
         uri: uriContent.uri,
         elementType: uriContent.elementType,
         attribute: uriContent.attribute,
         attributeID: uriContent.attributeID,
       };
-      axios
-        .post("/api/uricontent", contentRequest, config)
-        .then(async (resp: any) => {
-          console.info(contentRequest, resp);
-          const urlContext: string = resp.data.content;
-          const messages: IChatMessage[] = [];
-          messages.push({
-            role: "system",
-            content:
-              "You are a assistant that can answer questions using the following context:\n" +
-              urlContext,
-          });
-          messages.push({
-            role: "user",
-            content: prompt,
-          });
-
-          let payload: IChatPrompt = {
-            ...startModel,
-            messages,
-            context: context,
-          };
-          //console.info(payload);
-          setPayload(JSON.stringify(payload, null, 2));
-          let completion = await getChatCompletion(payload);
-          setCompletion(completion);
-          setCompletionText(completion?.choices[0].message.content ?? "");
-        });
+      let resp = await axios.post(
+        SCRAPPER_URI,
+        contentRequest,
+        contentTypeConfig
+      );
+      siteContent = resp.data ?? "";
     }
+
+    if (context !== "" && siteContent !== "") {
+      finalContext = context + "\n" + siteContent;
+    } else if (context !== "" && siteContent === "") {
+      finalContext = context;
+    } else if (context === "" && siteContent !== "") {
+      finalContext = siteContent;
+    }
+
+    if (finalContext !== "") {
+      messages.push({
+        role: "system",
+        content:
+          "You are a assistant that can answer questions using the following context:\n" +
+          finalContext,
+      });
+      messages.push({
+        role: "user",
+        content: prompt,
+      });
+    } else {
+      messages.push({
+        role: "system",
+        content: "You are a general assistant.",
+      });
+      messages.push({
+        role: "user",
+        content: prompt,
+      });
+    }
+
+    let payload: IChatPrompt = {
+      ...startModel,
+      messages,
+      context: finalContext,
+    };
+
+    setPayload(JSON.stringify(payload, null, 2));
+    let completion = await getChatCompletion(payload);
+    setCompletion(completion);
+    setCompletionText(completion?.choices[0].message.content ?? "");
+  };
+
+  const processDavinci = async () => {
+    let finalPrompt = prompt;
+    let finalContent = "";
+    let siteContent = "";
+
+    if (uriContent.uri !== "") {
+      const contentRequest = {
+        uri: uriContent.uri,
+        elementType: uriContent.elementType,
+        attribute: uriContent.attribute,
+        attributeID: uriContent.attributeID,
+      };
+      let resp = await axios.post(
+        SCRAPPER_URI,
+        contentRequest,
+        contentTypeConfig
+      );
+      siteContent = resp.data ?? "";
+    }
+
+    if (context !== "" && siteContent !== "") {
+      finalContent = context + "\n" + siteContent;
+    } else if (context !== "" && siteContent === "") {
+      finalContent = context;
+    } else if (context === "" && siteContent !== "") {
+      finalContent = siteContent;
+    }
+
+    if (finalContent !== "") {
+      finalPrompt += "\n" + CONTEXT_DIVIDER + "\n" + finalContent;
+    }
+
+    let payload: IDavinciPrompt = {
+      prompt: finalPrompt,
+      context: context,
+      temperature: parseFloat(props.settings.temperature),
+      max_tokens: parseInt(props.settings.max_tokens),
+      n: parseInt(props.settings.n),
+    };
+
+    //console.info(payload);
+    setPayload(JSON.stringify(payload, null, 2));
+    let completion = await getDavinciCompletion(payload);
+
+    //setCompletion(completion);
+    const ans = completion?.choices[0].text;
+    setCompletionText(ans ?? "");
+  };
+
+  const onSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    console.info(selectedOption);
+
+    if (selectedOption === "GPT") {
+      await processGPT();
+    } else if (selectedOption === "DAVINCI") {
+      await processDavinci();
+    }
+  };
+
+  const onRadioValueChange = (event: any) => {
+    setSelectedOption(event.target.value);
   };
 
   useEffect(() => {
@@ -228,23 +289,53 @@ const AksMe = (props: { settings: ISettings }) => {
               />
             </div>
           </div>
-          <button type="submit" className="btn btn-primary">
-            Submit
-          </button>
-          <button
-            type="button"
-            className="btn btn-danger m-2"
-            onClick={() => onClear(true)}
-          >
-            Clear
-          </button>
-          <button
-            type="button"
-            className="btn btn-danger"
-            onClick={() => onClear(false)}
-          >
-            Clear All
-          </button>
+          <div className="mt-2">
+            <button type="submit" className="btn btn-primary">
+              Submit
+            </button>
+            <button
+              type="button"
+              className="btn btn-danger m-2"
+              onClick={() => onClear(true)}
+            >
+              Clear
+            </button>
+            <button
+              type="button"
+              className="btn btn-danger me-2"
+              onClick={() => onClear(false)}
+            >
+              Clear All
+            </button>
+            <div className="form-check form-check-inline">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="api"
+                id="api1"
+                value="GPT"
+                checked={selectedOption === "GPT"}
+                onChange={onRadioValueChange}
+              />
+              <label className="form-check-label" htmlFor="api1">
+                GPT 3.5
+              </label>
+            </div>
+            <div className="form-check form-check-inline">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="api"
+                id="api2"
+                value="DAVINCI"
+                checked={selectedOption === "DAVINCI"}
+                onChange={onRadioValueChange}
+              />
+              <label className="form-check-label" htmlFor="api2">
+                Davinci
+              </label>
+            </div>
+          </div>
         </form>
       </section>
 
