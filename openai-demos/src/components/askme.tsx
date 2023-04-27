@@ -18,6 +18,9 @@ import axios from "axios";
 
 const AksMe = (props: { settings: ISettings }) => {
   // Constants
+  const Default_Role_Text = "You are a general assistant.";
+  const Default_Role_Text_Context =
+    "You are a general assistant that can answer question based on the following:";
   const SCRAPPER_URI = "/api/uricontent";
   const CONTEXT_DIVIDER = "[context]";
   let startModel: IChatPrompt = {
@@ -34,6 +37,7 @@ const AksMe = (props: { settings: ISettings }) => {
   };
 
   let [prompt, setPrompt] = useState<string>("");
+  let [roleText, setRoleText] = useState<string>("");
   let [context, setContext] = useState<string>("");
   let [completion, setCompletion] = useState<IChatCompletion | null>(null);
   let [completionText, setCompletionText] = useState<string>("");
@@ -95,7 +99,8 @@ const AksMe = (props: { settings: ISettings }) => {
       messages.push({
         role: "system",
         content:
-          "You are a assistant that can answer questions using the following context:\n" +
+          (roleText === "" ? Default_Role_Text_Context : roleText) +
+          "\n[context]\n" +
           finalContext,
       });
       messages.push({
@@ -105,7 +110,7 @@ const AksMe = (props: { settings: ISettings }) => {
     } else {
       messages.push({
         role: "system",
-        content: "You are a general assistant.",
+        content: roleText === "" ? Default_Role_Text : roleText,
       });
       messages.push({
         role: "user",
@@ -200,6 +205,20 @@ const AksMe = (props: { settings: ISettings }) => {
       <section>
         <div className="areaTitle">Prompt & Context</div>
         <form onSubmit={(e) => onSubmit(e)}>
+          <div className="mb-3">
+            <label htmlFor="systemrole" className="form-label">
+              GPT System Role
+            </label>
+            <textarea
+              className="form-control"
+              id="systemrole"
+              onChange={(e) => setRoleText(e.target.value)}
+              rows={2}
+              placeholder="You are a general assistant."
+              value={roleText}
+              disabled={selectedOption === "DAVINCI"}
+            />
+          </div>
           <div className="mb-3">
             <label htmlFor="prompt" className="form-label">
               Prompt
