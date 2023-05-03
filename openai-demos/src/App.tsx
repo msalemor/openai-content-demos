@@ -7,6 +7,7 @@ import Products from "./components/products";
 import Guides from "./components/guides";
 import SideBar from "./components/sidebar";
 import { ISettings } from "./interfaces";
+import Translation from "./components/translation";
 //import "./App.css";
 
 const App = () => {
@@ -33,6 +34,10 @@ const App = () => {
               element={<Products settings={settings} />}
             />
             <Route path="/guides" element={<Guides settings={settings} />} />
+            <Route
+              path="/translation"
+              element={<Translation settings={settings} />}
+            />
           </Routes>
         </div>
       </div>

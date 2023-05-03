@@ -5,6 +5,7 @@ import {
   IDavinciPrompt,
   IDavinciCompletion,
 } from "../interfaces";
+import Bottleneck from "bottleneck";
 
 export const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
@@ -13,6 +14,29 @@ export function wait(ms: number) {
     setTimeout(resolve, ms);
   });
 }
+
+export function promiseAll(promises: any[], callback: any) {
+  return Promise.all(
+    promises.map((p) => {
+      return p.catch((e: any) => {
+        callback(e);
+
+        return null;
+      });
+    })
+  );
+}
+
+export const limiter = new Bottleneck({
+  minTime: 500, //minimum time between requests
+  maxConcurrent: 2, //maximum concurrent requests
+});
+
+// export function scheduleRequest(endpoint) {
+//   return limiter.schedule(() => {
+//     return axios.get(endpoint);
+//   });
+// }
 
 export const getDavinciCompletion = async (
   options: IDavinciPrompt

@@ -52,6 +52,12 @@ const SideBar = (props: { settings: any; handler: any }) => {
               <span className="ms-1 d-none d-sm-inline">Travel Guides</span>
             </Link>
           </li>
+          <li>
+            <Link to="/translation" className="nav-link px-0 align-middle">
+              <i className="fs-4 bi-globe"></i>{" "}
+              <span className="ms-1 d-none d-sm-inline">Translation</span>
+            </Link>
+          </li>
           <li className="d-none d-sm-block">
             <section className="p-2">
               <div className="areaTitle mb-2">Settings</div>

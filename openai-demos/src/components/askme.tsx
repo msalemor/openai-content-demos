@@ -15,6 +15,13 @@ import {
 } from "../services";
 import ReactMarkdown from "react-markdown";
 import axios from "axios";
+import {
+  IDemoContent,
+  demoContentContract,
+  demoContentFinance,
+  demoContentProjects,
+  demoContentServers,
+} from "../content";
 
 const AksMe = (props: { settings: ISettings }) => {
   // Constants
@@ -194,6 +201,38 @@ const AksMe = (props: { settings: ISettings }) => {
     setSelectedOption(event.target.value);
   };
 
+  enum DemoArea {
+    Servers,
+    Projects,
+    Finance,
+    Lease,
+  }
+
+  const loadContent = (area: DemoArea) => {
+    let demoContent: IDemoContent | null = null;
+    switch (area) {
+      case DemoArea.Servers:
+        demoContent = demoContentServers;
+        break;
+      case DemoArea.Projects:
+        demoContent = demoContentProjects;
+        break;
+      case DemoArea.Finance:
+        demoContent = demoContentFinance;
+        break;
+      case DemoArea.Lease:
+        demoContent = demoContentContract;
+        break;
+      default:
+        break;
+    }
+    if (demoContent !== null) {
+      setRoleText(demoContent.role);
+      setPrompt(demoContent.prompt);
+      setContext(demoContent.context);
+    }
+  };
+
   useEffect(() => {
     forceRender();
     console.info("rendering");
@@ -354,6 +393,32 @@ const AksMe = (props: { settings: ISettings }) => {
                 Davinci
               </label>
             </div>
+          </div>
+          <div className="mt-2">
+            <button
+              className="btn btn-secondary me-2"
+              onClick={() => loadContent(DemoArea.Servers)}
+            >
+              Data Center
+            </button>
+            <button
+              className="btn btn-secondary me-2"
+              onClick={() => loadContent(DemoArea.Projects)}
+            >
+              Projects
+            </button>
+            <button
+              className="btn btn-secondary me-2"
+              onClick={() => loadContent(DemoArea.Finance)}
+            >
+              Finance
+            </button>
+            <button
+              className="btn btn-secondary"
+              onClick={() => loadContent(DemoArea.Lease)}
+            >
+              Contract
+            </button>
           </div>
         </form>
       </section>
