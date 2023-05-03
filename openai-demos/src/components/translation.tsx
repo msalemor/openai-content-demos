@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { demoContentTranslation } from "../content";
+import { demoContentTranslation } from "../demos";
 import { IDavinciPrompt, ISettings } from "../interfaces";
 import ReactMarkdown from "react-markdown";
 import { getDavinciCompletion, limiter, promiseAll } from "../services";

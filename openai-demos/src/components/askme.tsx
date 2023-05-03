@@ -21,7 +21,7 @@ import {
   demoContentFinance,
   demoContentProjects,
   demoContentServers,
-} from "../content";
+} from "../demos";
 
 const AksMe = (props: { settings: ISettings }) => {
   // Constants
