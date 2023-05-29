@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"regexp"
 	"server/common"
 	"strconv"
@@ -11,9 +12,17 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	log "github.com/sirupsen/logrus"
+	"github.com/vic3lord/stocks"
 )
 
 func main() {
+
+	stock, err := stocks.GetQuote("AAPL")
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Print(stock)
+
 	application := common.New()
 
 	//fiber 2.0
